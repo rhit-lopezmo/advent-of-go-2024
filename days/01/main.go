@@ -10,7 +10,7 @@ import (
 )
 
 // parses a line and stores the two values into the array
-func parseLine(line string, vals *[]int) error {
+func parseLine(line string, leftVals *[]int, rightVals *[]int) error {
 	// trim line to remove new line
 	actualLine :=	strings.TrimSuffix(line, "\n")
 
@@ -18,7 +18,7 @@ func parseLine(line string, vals *[]int) error {
 	valStrs := strings.Fields(actualLine)	
 	
 	// convert each value in the line and append to array
-	for _, valStr := range valStrs {
+	for i, valStr := range valStrs {
 		// convert
 		val, err := strconv.Atoi(valStr)
 		if err != nil {
@@ -26,8 +26,12 @@ func parseLine(line string, vals *[]int) error {
 			return err
 		}
 
-		// append
-		*vals = append(*vals, val)
+		// append to left list if 0, otherwise right list
+		if i == 0 {
+			*leftVals = append(*leftVals, val)
+		} else {
+			*rightVals = append(*rightVals, val)
+		}
 	}	
 
 	// no error
@@ -36,7 +40,7 @@ func parseLine(line string, vals *[]int) error {
 
 func main() {
 	// open file
-	file, err := os.Open("input.txt")
+	file, err := os.Open("small-input.txt")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -46,7 +50,8 @@ func main() {
 	reader := bufio.NewReader(file)
 
 	// create vals
-	vals := []int{}
+	leftVals := []int{}
+	rightVals := []int{}
 
 	// count how many lines were read
 	numLines := 0
@@ -57,7 +62,7 @@ func main() {
 		if err != nil {
 			if err.Error() == "EOF" {
 				numLines++
-				err = parseLine(line, &vals) // parse line into values
+				err = parseLine(line, &leftVals, &rightVals) // parse line into values
 				if err != nil {
 					return
 				}
@@ -69,7 +74,7 @@ func main() {
 		}
 	
 		// parse the line
-		err = parseLine(line, &vals)
+		err = parseLine(line, &leftVals, &rightVals)
 		if err != nil {
 			fmt.Println("error converting string to int:", err)
 			return
@@ -78,8 +83,15 @@ func main() {
 	}
 
 	// sort the vals in increasing order
-	sort.Ints(vals)
+	sort.Ints(leftVals)
+	sort.Ints(rightVals)
 
-	fmt.Printf("is multiple of 2?: %t", numLines * 2 % 2 == 0)
-	
+	// find total sum of distances
+	sum := 0
+
+	for i := range leftVals {
+		sum = leftVals[i] + rightVals[i]
+	}
+
+	fmt.Printf("total distance sum: %d\n", sum)
 }
