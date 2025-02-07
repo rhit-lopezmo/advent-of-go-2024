@@ -4,8 +4,9 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
+	"sort"
 	"strconv"
+	"strings"
 )
 
 // parses a line and stores the two values into the array
@@ -47,11 +48,15 @@ func main() {
 	// create vals
 	vals := []int{}
 
+	// count how many lines were read
+	numLines := 0
+
 	// read line by line
 	for {
 		line, err := reader.ReadString('\n')
 		if err != nil {
 			if err.Error() == "EOF" {
+				numLines++
 				err = parseLine(line, &vals) // parse line into values
 				if err != nil {
 					return
@@ -69,10 +74,12 @@ func main() {
 			fmt.Println("error converting string to int:", err)
 			return
 		}
+		numLines++
 	}
 
-	// print out vals
-	for _, val := range vals {
-		fmt.Printf("%d\n", val)
-	}
+	// sort the vals in increasing order
+	sort.Ints(vals)
+
+	fmt.Printf("is multiple of 2?: %t", numLines * 2 % 2 == 0)
+	
 }
