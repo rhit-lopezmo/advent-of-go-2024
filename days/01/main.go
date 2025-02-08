@@ -39,8 +39,19 @@ func parseLine(line string, leftVals *[]int, rightVals *[]int) error {
 }
 
 func main() {
+	// get args
+	args := os.Args
+
+	if len(args) < 2 {
+		fmt.Printf("usage: go run main.go <filename>\n")
+		return
+	}
+
+	// get filename
+	filename := args[1] // args[0] is program name like C
+
 	// open file
-	file, err := os.Open("small-input.txt")
+	file, err := os.Open(filename)
 	if err != nil {
 		fmt.Println(err)
 		return
