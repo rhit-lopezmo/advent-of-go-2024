@@ -38,6 +38,15 @@ func parseLine(line string, leftVals *[]int, rightVals *[]int) error {
 	return nil
 }
 
+// absolute value function for integers
+func absInt(value int) int {
+	if value < 0 {
+		return -1 * value
+	} else {
+		return value
+	}
+}
+
 func main() {
 	// get args
 	args := os.Args
@@ -101,7 +110,7 @@ func main() {
 	sum := 0
 
 	for i := range leftVals {
-		sum = leftVals[i] + rightVals[i]
+		sum += absInt(leftVals[i] - rightVals[i])
 	}
 
 	fmt.Printf("total distance sum: %d\n", sum)
