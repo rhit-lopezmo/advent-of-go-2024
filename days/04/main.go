@@ -13,16 +13,16 @@ func isValid(grid [][]byte, row, col int) bool {
 
 // Function to check a string in a given direction
 func checkVerticalUp(grid [][]byte, row, col int, target string) int {
-	if !isValid(grid, row, col) || !isValid(grid, row-3, col) {
+	if !isValid(grid, row, col) || !isValid(grid, row - 3, col) {
 		return 0
 	}
 
 	// Collect characters from (row, col) upwards
 	word := string([]byte{
 		grid[row][col],
-		grid[row-1][col],
-		grid[row-2][col],
-		grid[row-3][col],
+		grid[row - 1][col],
+		grid[row - 2][col],
+		grid[row - 3][col],
 	})
 
 	isXMAS := word == target
@@ -35,15 +35,15 @@ func checkVerticalUp(grid [][]byte, row, col int, target string) int {
 }
 
 func checkVerticalDown(grid [][]byte, row, col int, target string) int {
-	if !isValid(grid, row, col) || !isValid(grid, row+3, col) {
+	if !isValid(grid, row, col) || !isValid(grid, row + 3, col) {
 		return 0
 	}
 
 	word := string([]byte{
 		grid[row][col],
-		grid[row+1][col],
-		grid[row+2][col],
-		grid[row+3][col],
+		grid[row + 1][col],
+		grid[row + 2][col],
+		grid[row + 3][col],
 	})
 
 	isXMAS := word == target
@@ -56,15 +56,15 @@ func checkVerticalDown(grid [][]byte, row, col int, target string) int {
 }
 
 func checkHorizontalLeft(grid [][]byte, row, col int, target string) int {
-	if !isValid(grid, row, col) || !isValid(grid, row, col-3) {
+	if !isValid(grid, row, col) || !isValid(grid, row, col - 3) {
 		return 0
 	}
 
 	word := string([]byte{
 		grid[row][col],
-		grid[row][col-1],
-		grid[row][col-2],
-		grid[row][col-3],
+		grid[row][col - 1],
+		grid[row][col - 2],
+		grid[row][col - 3],
 	})
 
 	isXMAS := word == target
@@ -77,15 +77,15 @@ func checkHorizontalLeft(grid [][]byte, row, col int, target string) int {
 }
 
 func checkHorizontalRight(grid [][]byte, row, col int, target string) int {
-	if !isValid(grid, row, col) || !isValid(grid, row, col+3) {
+	if !isValid(grid, row, col) || !isValid(grid, row, col + 3) {
 		return 0
 	}
 
 	word := string([]byte{
 		grid[row][col],
-		grid[row][col+1],
-		grid[row][col+2],
-		grid[row][col+3],
+		grid[row][col + 1],
+		grid[row][col + 2],
+		grid[row][col + 3],
 	})
 
 	isXMAS := word == target
@@ -98,15 +98,15 @@ func checkHorizontalRight(grid [][]byte, row, col int, target string) int {
 }
 
 func checkDiagonalUpLeft(grid [][]byte, row, col int, target string) int {
-	if !isValid(grid, row, col) || !isValid(grid, row-3, col-3) {
+	if !isValid(grid, row, col) || !isValid(grid, row - 3, col - 3) {
 		return 0
 	}
 
 	word := string([]byte{
 		grid[row][col],
-		grid[row-1][col-1],
-		grid[row-2][col-2],
-		grid[row-3][col-3],
+		grid[row - 1][col - 1],
+		grid[row - 2][col - 2],
+		grid[row - 3][col - 3],
 	})
 
 	isXMAS := word == target
@@ -119,15 +119,15 @@ func checkDiagonalUpLeft(grid [][]byte, row, col int, target string) int {
 }
 
 func checkDiagonalUpRight(grid [][]byte, row, col int, target string) int {
-	if !isValid(grid, row, col) || !isValid(grid, row-3, col+3) {
+	if !isValid(grid, row, col) || !isValid(grid, row - 3, col + 3) {
 		return 0
 	}
 
 	word := string([]byte{
 		grid[row][col],
-		grid[row-1][col+1],
-		grid[row-2][col+2],
-		grid[row-3][col+3],
+		grid[row - 1][col + 1],
+		grid[row - 2][col + 2],
+		grid[row - 3][col + 3],
 	})
 
 	isXMAS := word == target
@@ -140,15 +140,15 @@ func checkDiagonalUpRight(grid [][]byte, row, col int, target string) int {
 }
 
 func checkDiagonalDownLeft(grid [][]byte, row, col int, target string) int {
-	if !isValid(grid, row, col) || !isValid(grid, row+3, col-3) {
+	if !isValid(grid, row, col) || !isValid(grid, row + 3, col - 3) {
 		return 0
 	}
 
 	word := string([]byte{
 		grid[row][col],
-		grid[row+1][col-1],
-		grid[row+2][col-2],
-		grid[row+3][col-3],
+		grid[row + 1][col - 1],
+		grid[row + 2][col - 2],
+		grid[row + 3][col - 3],
 	})
 
 	isXMAS := word == target
@@ -161,15 +161,15 @@ func checkDiagonalDownLeft(grid [][]byte, row, col int, target string) int {
 }
 
 func checkDiagonalDownRight(grid [][]byte, row, col int, target string) int {
-	if !isValid(grid, row, col) || !isValid(grid, row+3, col+3) {
+	if !isValid(grid, row, col) || !isValid(grid, row + 3, col + 3) {
 		return 0
 	}
 
 	word := string([]byte{
 		grid[row][col],
-		grid[row+1][col+1],
-		grid[row+2][col+2],
-		grid[row+3][col+3],
+		grid[row + 1][col + 1],
+		grid[row + 2][col + 2],
+		grid[row + 3][col + 3],
 	})
 
 	isXMAS := word == target
